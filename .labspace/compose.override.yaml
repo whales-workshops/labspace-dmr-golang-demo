@@ -1,0 +1,31 @@
+services:
+  interface:
+    image: dockersamples/labspace-interface:dev
+  configurator:
+    environment:
+      PROJECT_CLONE_URL: https://github.com/whales-workshops/labspace-dmr-golang-demo
+
+  workspace:
+   # Override the default image if desired
+    image: philippecharriere494/labspace-workspace-golang:1.25.1_0.0.1
+    #image: test-golang-image:0.0.1
+
+    models:
+      cook-model:
+        endpoint_var: MODEL_RUNNER_BASE_URL
+        model_var: COOK_MODEL
+  #   # Override the default ports to publish additional ports you may need
+  #   # More details - https://github.com/dockersamples/labspace-infra/blob/main/docs/configuration.md#overriding-the-workspace-ports
+  #   ports: !override
+  #     - "6274:6274" # Expose the MCP inspector users will launch from inside the Labspace
+  #     - "8080:8080" # The port used by the app
+
+  #   # Add other environment variables as needed
+  #   environment:
+  #     DANGEROUSLY_OMIT_AUTH: "true" # Skip auth for the MCP Inspector
+
+# Add other models or services your Labspace may need
+models:
+
+  cook-model:
+    model: hf.co/menlo/jan-nano-gguf:q4_k_m

@@ -1,0 +1,8 @@
+title: Docker Model Runner & Golang Demo
+description: Play with (very) Small Language Models. (🚧 work in progress)
+
+sections:
+  - title: Introduction
+    contentPath: .labspace/01-introduction.md
+
+
